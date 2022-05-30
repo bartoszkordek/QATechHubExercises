@@ -62,6 +62,6 @@ public class Steps {
 
     @After
     public void close_driver(){
-        if(driver!=null) driver.close();
+        driver.close();
     }
 }
