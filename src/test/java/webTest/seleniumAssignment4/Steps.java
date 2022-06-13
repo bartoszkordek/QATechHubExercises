@@ -81,10 +81,11 @@ public class Steps {
         Thread.sleep(10000);
 
         List<WebElement> productList = driver.findElements(By.xpath("//*[@id='srp-river-results']/ul/li"));
+        int productListSize = productList.size();
 
         int counter = 0;
         for (WebElement product : productList){
-            if(counter > 0 && counter < 60)
+            if(counter < productListSize-2)
                 System.out.println(product.findElement(By.xpath("div/div[1]/div/a/div/img")).getAttribute("alt"));
 
             counter++;
