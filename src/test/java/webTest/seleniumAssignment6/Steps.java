@@ -1,5 +1,6 @@
 package webTest.seleniumAssignment6;
 
+import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -93,4 +94,10 @@ public class Steps {
         WebElement loginButton = driver.findElement(By.xpath(loginButtonXPath));
         loginButton.click();
     }
+
+    @After
+    public void close_driver(){
+        driver.close();
+    }
+
 }
