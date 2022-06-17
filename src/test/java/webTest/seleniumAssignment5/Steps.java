@@ -72,7 +72,6 @@ public class Steps {
     @Then("Enter valid Email {string} Id and click continue")
     public void enter_valid_Email_Id_and_click_continue(String email) {
         driver.switchTo().frame("loginIframe");
-        String emailFieldXPath = "//*[@id=\"userName\"]";
         WebElement emailField = driver.findElement(By.id("userName"));
         emailField.sendKeys(email);
 
