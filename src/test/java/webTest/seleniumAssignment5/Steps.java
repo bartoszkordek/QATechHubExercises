@@ -1,9 +1,12 @@
 package webTest.seleniumAssignment5;
 
+import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.safari.SafariDriver;
 
 import java.util.concurrent.TimeUnit;
@@ -47,4 +50,45 @@ public class Steps {
     public void navigate_to_Snapdeal_site(String url) {
         driver.get(url);
     }
+
+    @Then("Move to Sign In Button and hold")
+    public void move_to_Sign_In_Button_and_hold() throws InterruptedException {
+        Thread.sleep(5000);
+        String signInButtonXPath = "//*[@id=\"sdHeader\"]/div[4]/div[2]/div/div[3]/div[3]/div/span[1]";
+        WebElement signInButton = driver.findElement(By.xpath(signInButtonXPath));
+        signInButton.click();
+        Thread.sleep(3000);
+    }
+
+    @Then("Move to the Login button and click")
+    public void move_to_the_Login_button_and_click() throws InterruptedException {
+        String loginButtonXPath = "//*[@id=\"sdHeader\"]/div[4]/div[2]/div/div[3]/div[3]/div/div/div[2]/div[2]/span[2]/a";
+        WebElement loginButton = driver.findElement(By.xpath(loginButtonXPath));
+        loginButton.click();
+        Thread.sleep(3000);
+    }
+
+
+    @Then("Enter valid Email {string} Id and click continue")
+    public void enter_valid_Email_Id_and_click_continue(String email) {
+        driver.switchTo().frame("loginIframe");
+        String emailFieldXPath = "//*[@id=\"userName\"]";
+        WebElement emailField = driver.findElement(By.id("userName"));
+        emailField.sendKeys(email);
+
+        String continueButtonXPath = "//*[@id=\"checkUser\"]";
+        WebElement continueButton = driver.findElement(By.xpath(continueButtonXPath));
+        continueButton.click();
+    }
+
+    @After
+    public void close_driver(){
+        driver.close();
+    }
+
+
+
+
+
+
 }
